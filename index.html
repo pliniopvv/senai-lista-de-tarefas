@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Tarefas</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./static/semanticui/semantic.min.css"
+      href="./static/style.css"
+    />
+    <script src="./static/semanticui/jquery.js"></script>
+    <script src="./static/semanticui/semantic.min.js"></script>
+  </head>
+  <body>
+    <br />
+    <div class="ui one column centered grid">
+      <div class="ui cards">
+        <div class="card" style="width: 500px">
+          <div class="content">
+            <div class="header">Lista de tarefas</div>
+            <div class="description">
+              Descrição das tarefas a serem realizadas
+            </div>
+          </div>
+          <div class="extra content">
+            <div class="ui fluid action input">
+              <input type="text" placeholder="Tarefa ..." />
+              <button class="ui button">Adicionar</button>
+            </div>
+          </div>
+          <div class="extra content">
+            <!-- Lista Ordenada -->
+            <ul id="listview" style="list-style-type: none; padding: 0">
+              <li class="field">
+                <div class="ui checkbox">
+                  <input type="checkbox" tabindex="0" class="hidden" />
+                  <label>Tarefinha 1</label>
+                </div>
+              </li>
+              <li>
+                <div class="ui checkbox">
+                  <input type="checkbox" tabindex="0" class="hidden" />
+                  <label>Tarefinha 2</label>
+                </div>
+              </li>
+            </ul>
+            <!-- Lista Ordenada -->
+          </div>
+          <!-- <div class="extra content">
+                <div class="ui two buttons">
+                  <div class="ui basic green button">Aprovar</div>
+                  <div class="ui basic red button">Rejeitar</div>
+                </div>
+              </div> -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // active checkboxs
+      $(".ui.checkbox").checkbox();
+    </script>
+  </body>
+</html>

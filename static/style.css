@@ -1,0 +1,14 @@
+body,
+html {
+  padding: 0;
+  margin: 0;
+  width: 100dvw;
+  height: 100dvh;
+}
+
+ul,
+ol {
+  list-style: none;
+  list-style-type: none;
+  text-decoration: none;
+}
