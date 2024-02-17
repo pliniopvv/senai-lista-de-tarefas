@@ -49,8 +49,8 @@ function createNote() {
   lista.appendChild(li);
 
   button.addEventListener("click", () => {
-    lista.removeChild(hr);
     lista.removeChild(li);
+    if (lista.contains(hr)) lista.removeChild(hr);
   });
 
   // active checkboxs
