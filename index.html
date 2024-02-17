@@ -8,10 +8,11 @@
       rel="stylesheet"
       type="text/css"
       href="./static/semanticui/semantic.min.css"
-      href="./static/style.css"
     />
+    <link rel="stylesheet" type="text/css" href="./static/style.css" />
     <script src="./static/semanticui/jquery.js"></script>
     <script src="./static/semanticui/semantic.min.js"></script>
+    <script src="./static/script.js"></script>
   </head>
   <body>
     <br />
@@ -26,27 +27,44 @@
           </div>
           <div class="extra content">
             <div class="ui fluid action input">
-              <input type="text" placeholder="Tarefa ..." />
-              <button class="ui button">Adicionar</button>
+              <input type="text" placeholder="Tarefa ..." id="content" />
+              <button class="ui button" onclick="createNote()">
+                Adicionar
+              </button>
             </div>
           </div>
           <div class="extra content">
-            <!-- Lista Ordenada -->
-            <ul id="listview" style="list-style-type: none; padding: 0">
-              <li class="field">
-                <div class="ui checkbox">
-                  <input type="checkbox" tabindex="0" class="hidden" />
-                  <label>Tarefinha 1</label>
+            <ul class="extra content" id="lista">
+              <!-- Lista Ordenada -->
+              <li class="ui grid">
+                <div class="twelve wide column">
+                  <div class="ui checkbox">
+                    <input type="checkbox" tabindex="0" class="hidden" />
+                    <label>Tarefinha 1</label>
+                  </div>
+                </div>
+                <div class="four wide column">
+                  <button>
+                    <i class="trash icon"></i>
+                  </button>
                 </div>
               </li>
-              <li>
-                <div class="ui checkbox">
-                  <input type="checkbox" tabindex="0" class="hidden" />
-                  <label>Tarefinha 2</label>
+              <hr />
+              <li class="ui grid">
+                <div class="twelve wide column">
+                  <div class="ui checkbox">
+                    <input type="checkbox" tabindex="0" class="hidden" />
+                    <label>Tarefinha 2</label>
+                  </div>
+                </div>
+                <div class="four wide column">
+                  <button>
+                    <i class="trash icon"></i>
+                  </button>
                 </div>
               </li>
+              <!-- Lista Ordenada -->
             </ul>
-            <!-- Lista Ordenada -->
           </div>
           <!-- <div class="extra content">
                 <div class="ui two buttons">

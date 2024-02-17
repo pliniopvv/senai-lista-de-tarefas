@@ -12,3 +12,6 @@ ol {
   list-style-type: none;
   text-decoration: none;
 }
+li input[type="checkbox"]:checked + label {
+  text-decoration-line: line-through;
+}
