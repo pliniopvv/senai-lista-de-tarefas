@@ -3,6 +3,8 @@ function createNote() {
   let content = document.querySelector("#content").value;
   document.querySelector("#content").value = "";
 
+  if (content.length <= 0) return;
+
   let hr = document.createElement("hr");
 
   let li = document.createElement("li");
