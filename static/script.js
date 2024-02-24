@@ -55,8 +55,15 @@ function createNote() {
     if (confirmation) {
       lista.removeChild(li);
       if (lista.contains(hr)) lista.removeChild(hr);
+      // update counter
+      let eCounter = document.querySelector("#counter");
+      eCounter.innerHTML = document.querySelectorAll("#lista li").length;
     }
   });
+
+  // update counter
+  let eCounter = document.querySelector("#counter");
+  eCounter.innerHTML = document.querySelectorAll("#lista li").length;
 
   // active checkboxs
   $(".ui.checkbox").checkbox();
