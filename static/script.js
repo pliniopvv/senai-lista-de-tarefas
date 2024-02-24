@@ -51,8 +51,11 @@ function createNote() {
   lista.appendChild(li);
 
   button.addEventListener("click", () => {
-    lista.removeChild(li);
-    if (lista.contains(hr)) lista.removeChild(hr);
+    let confirmation = confirm("Tem certeza que deseja excluír a tarefa?");
+    if (confirmation) {
+      lista.removeChild(li);
+      if (lista.contains(hr)) lista.removeChild(hr);
+    }
   });
 
   // active checkboxs
