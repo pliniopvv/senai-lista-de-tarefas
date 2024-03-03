@@ -2,6 +2,7 @@
 let list = [];
 
 function createTask() {
+	let list = load();
 	let lista = document.querySelector("#lista");
 	let content = document.querySelector("#content").value;
 	document.querySelector("#content").value = "";
@@ -10,13 +11,12 @@ function createTask() {
 
 	let data = { content };
 	let li = buildHTMLElement(data);
-	debugger;
 	lista.appendChild(li);
 
 	// update counter
 	let eCounter = document.querySelector("#counter");
 	eCounter.innerHTML = document.querySelectorAll("#lista li").length;
-
+	
 	list.push({ content, checked: false });
 	save();
 
@@ -55,7 +55,9 @@ function save() {
 }
 
 function load() {
-	list = JSON.parse(localStorage.getItem('list'));
+	let _list = JSON.parse(localStorage.getItem('list'));
+	if (!_list) _list = [];
+	list = _list;
 	return list;
 }
 
