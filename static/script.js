@@ -17,7 +17,7 @@ function createTask() {
 	let eCounter = document.querySelector("#counter");
 	eCounter.innerHTML = document.querySelectorAll("#lista li").length;
 	
-	list.push({ titulo, concluido: false });
+	list.push(data);
 	save();
 
 	// active checkboxs
