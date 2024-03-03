@@ -24,13 +24,20 @@ function createTask() {
 	$(".ui.checkbox").checkbox();
 }
 
-function concludeTask(data) {
-	data.concluido = true;
+function concludeTask(dataTitulo) {
+	let data = list.filter((d) => d.titulo == dataTitulo);
+	if (data.length > 0) {
+		data[0].concluido = true;
+	}
+	save();
 }
 
-function removeTask(data) {
-	list.splice(list.indexOf(data),1);
-	save();
+function removeTask(dataString) {
+	let data = list.filter((d) => d.titulo == dataTitulo);
+	if (data.length > 0) {
+		list.splice(list.indexOf(data[0]),1);
+		save();
+	}
 }
 
 function listTasks() {
