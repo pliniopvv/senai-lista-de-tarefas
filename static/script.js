@@ -4,12 +4,12 @@ let list = [];
 function createTask() {
 	let list = load();
 	let lista = document.querySelector("#lista");
-	let content = document.querySelector("#content").value;
+	let titulo = document.querySelector("#content").value;
 	document.querySelector("#content").value = "";
 
-	if (content.length <= 0) return;
+	if (titulo.length <= 0) return;
 
-	let data = { content };
+	let data = { titulo };
 	let li = buildHTMLElement(data);
 	lista.appendChild(li);
 
@@ -17,7 +17,7 @@ function createTask() {
 	let eCounter = document.querySelector("#counter");
 	eCounter.innerHTML = document.querySelectorAll("#lista li").length;
 	
-	list.push({ content, checked: false });
+	list.push({ titulo, concluido: false });
 	save();
 
 	// active checkboxs
@@ -25,7 +25,7 @@ function createTask() {
 }
 
 function concludeTask(data) {
-	data.finish = true;
+	data.concluido = true;
 }
 
 function removeTask(data) {
@@ -35,7 +35,7 @@ function removeTask(data) {
 
 function listTasks() {
 	let lista = document.querySelector("#lista");
-	lista.innerHTML = ''; // clear content;
+	lista.innerHTML = ''; // clear titulo;
         let list = load();
 
 	for (var item of list)
@@ -91,13 +91,13 @@ function buildHTMLElement(data) {
 	div5.appendChild(button);
 	button.appendChild(i);
 
-	p.appendChild(document.createTextNode(data.content));
+	p.appendChild(document.createTextNode(data.titulo));
 
 	li.classList.add("ui", "grid");
 	div1.classList.add("two", "wide", "column");
 	div2.classList.add("ui", "checkbox");
 	input.type = "checkbox";
-	input.checked = data?.finish;
+	input.checked = data?.concluido;
 	input.tabindex = "0";
 	input.classList.add("hidden");
 
@@ -110,7 +110,7 @@ function buildHTMLElement(data) {
 	i.classList.add("trash", "icon");
 
 	input.addEventListener('change', (event) => {
-		data.finish = event.target.checked;		
+		data.concluido = event.target.checked;		
 		save();
 	});
 	button.addEventListener("click", () => {
