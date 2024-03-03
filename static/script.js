@@ -1,70 +1,127 @@
-function createNote() {
-  let lista = document.querySelector("#lista");
-  let content = document.querySelector("#content").value;
-  document.querySelector("#content").value = "";
 
-  if (content.length <= 0) return;
+let list = [];
 
-  let hr = document.createElement("hr");
+function createTask() {
+	let lista = document.querySelector("#lista");
+	let content = document.querySelector("#content").value;
+	document.querySelector("#content").value = "";
 
-  let li = document.createElement("li");
-  let div1 = document.createElement("div");
-  let div2 = document.createElement("div");
-  let input = document.createElement("input");
-  let div3 = document.createElement("div");
-  let div4 = document.createElement("div");
-  let p = document.createElement("p");
-  let div5 = document.createElement("div");
-  let button = document.createElement("button");
-  let i = document.createElement("i");
+	if (content.length <= 0) return;
 
-  li.appendChild(div1);
-  div1.appendChild(div2);
-  div2.appendChild(input);
+	let data = { content };
+	let li = buildHTMLElement(data);
+	debugger;
+	lista.appendChild(li);
 
-  li.appendChild(div3);
-  div3.appendChild(div4);
-  div4.appendChild(p);
+	// update counter
+	let eCounter = document.querySelector("#counter");
+	eCounter.innerHTML = document.querySelectorAll("#lista li").length;
 
-  li.appendChild(div5);
-  div5.appendChild(button);
-  button.appendChild(i);
+	list.push({ content, checked: false });
+	save();
 
-  p.appendChild(document.createTextNode(content));
+	// active checkboxs
+	$(".ui.checkbox").checkbox();
+}
 
-  li.classList.add("ui", "grid");
-  div1.classList.add("two", "wide", "column");
-  div2.classList.add("ui", "checkbox");
-  input.type = "checkbox";
-  input.tabindex = "0";
-  input.classList.add("hidden");
+function concludeTask(data) {
+	data.finish = true;
+}
 
-  div3.classList.add("ten", "wide", "column");
-  div4.classList.add("myDescription");
-  //p.classList.add();
+function removeTask(data) {
+	list.splice(list.indexOf(data),1);
+	save();
+}
 
-  div5.classList.add("four", "wide", "column");
-  //button.classList.add();
-  i.classList.add("trash", "icon");
+function listTasks() {
+	let lista = document.querySelector("#lista");
+	lista.innerHTML = ''; // clear content;
+        let list = load();
 
-  if (lista.children.length != 0) lista.appendChild(hr);
-  lista.appendChild(li);
+	for (var item of list)
+		lista.appendChild(buildHTMLElement(item));
+	
+	
+	// update counter
+	let eCounter = document.querySelector("#counter");
+	eCounter.innerHTML = document.querySelectorAll("#lista li").length;
+	
+	// active checkboxs
+	$(".ui.checkbox").checkbox();
+}
 
-  button.addEventListener("click", () => {
-    let confirmation = confirm("Tem certeza que deseja excluír a tarefa?");
-    if (confirmation) {
-      lista.removeChild(li);
-      if (lista.contains(hr)) lista.removeChild(hr);
-      // update counter
-      let eCounter = document.querySelector("#counter");
-      eCounter.innerHTML = document.querySelectorAll("#lista li").length;
-    }
-  });
+function save() {
+	localStorage.setItem('list',JSON.stringify(list));
+}
 
-  // update counter
-  let eCounter = document.querySelector("#counter");
-  eCounter.innerHTML = document.querySelectorAll("#lista li").length;
+function load() {
+	list = JSON.parse(localStorage.getItem('list'));
+	return list;
+}
 
-  // active checkboxs
-  $(".ui.checkbox").checkbox();
+
+function buildHTMLElement(data) {
+
+	let lista = document.querySelector("#lista");
+
+	//let hr = document.createElement("hr");
+
+	let li = document.createElement("li");
+	let div1 = document.createElement("div");
+	let div2 = document.createElement("div");
+	let input = document.createElement("input");
+	let div3 = document.createElement("div");
+	let div4 = document.createElement("div");
+	let p = document.createElement("p");
+	let div5 = document.createElement("div");
+	let button = document.createElement("button");
+	let i = document.createElement("i");
+
+	li.appendChild(div1);
+	div1.appendChild(div2);
+	div2.appendChild(input);
+
+	li.appendChild(div3);
+	div3.appendChild(div4);
+	div4.appendChild(p);
+
+	li.appendChild(div5);
+	div5.appendChild(button);
+	button.appendChild(i);
+
+	p.appendChild(document.createTextNode(data.content));
+
+	li.classList.add("ui", "grid");
+	div1.classList.add("two", "wide", "column");
+	div2.classList.add("ui", "checkbox");
+	input.type = "checkbox";
+	input.checked = data?.finish;
+	input.tabindex = "0";
+	input.classList.add("hidden");
+
+	div3.classList.add("ten", "wide", "column");
+	div4.classList.add("myDescription");
+	//p.classList.add();
+
+	div5.classList.add("four", "wide", "column");
+	//button.classList.add();
+	i.classList.add("trash", "icon");
+
+	input.addEventListener('change', (event) => {
+		data.finish = event.target.checked;		
+		save();
+	});
+	button.addEventListener("click", () => {
+		let confirmation = confirm("Tem certeza que deseja excluír a tarefa?");
+		if (confirmation) {
+			lista.removeChild(li);
+			removeTask(data);
+			//if (lista.contains(hr)) lista.removeChild(hr);
+			// update counter
+			let eCounter = document.querySelector("#counter");
+			eCounter.innerHTML = document.querySelectorAll("#lista li").length;
+		}
+	});
+
+	return li; 
 }

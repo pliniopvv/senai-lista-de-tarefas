@@ -14,7 +14,7 @@
     <script src="./static/semanticui/semantic.min.js"></script>
     <script src="./static/script.js"></script>
   </head>
-  <body>
+  <body onload="listTasks()">
     <br />
     <div class="ui one column centered grid">
       <div class="ui cards">
@@ -28,7 +28,7 @@
           <div class="extra content">
             <div class="ui fluid action input">
               <input type="text" placeholder="Tarefa ..." id="content" />
-              <button class="ui button" onclick="createNote()">
+              <button class="ui button" onclick="createTask()">
                 Adicionar
               </button>
             </div>
